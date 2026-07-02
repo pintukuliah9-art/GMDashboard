@@ -1144,6 +1144,133 @@ body.dark .dark-text{color:var(--text)}
 }
 .field-input:focus{border-color:var(--teal)}
 
+
+/* ── STAT GRID (halaman ringkasan) ───────────────────────── */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.stat-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px}
+.stat-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.6px;margin-bottom:6px}
+.stat-val{font-family:'DM Serif Display',serif;font-size:22px;font-weight:700;color:var(--text)}
+.stat-val.teal{color:var(--teal)}
+.stat-val.blue{color:var(--blue)}
+.stat-val.green{color:#16A34A}
+.stat-val.gold{color:var(--gold)}
+.stat-sub{font-size:11px;color:var(--muted);margin-top:3px}
+
+/* ── CFG FIELD CARD (kanban konfigurasi) ────────────────── */
+.cfg-field{
+  background:var(--card);border:1px solid var(--border);border-radius:9px;
+  padding:10px 12px;margin-bottom:8px;cursor:pointer;
+  display:flex;align-items:flex-start;gap:10px;
+  transition:box-shadow .15s;
+}
+.cfg-field:hover{box-shadow:0 2px 8px rgba(0,0,0,.08)}
+.cfg-field.inactive{opacity:.55}
+.cfg-field.pending{border-color:var(--gold);background:#FFFBEB}
+body.dark .cfg-field.pending{background:#292000}
+.cfg-toggle{
+  width:22px;height:22px;border-radius:6px;border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;font-size:11px;
+  flex-shrink:0;cursor:pointer;font-weight:700;margin-top:1px;
+}
+.cfg-toggle.on{background:var(--teal);border-color:var(--teal);color:#fff}
+.cfg-toggle.off{background:var(--surface);color:var(--muted)}
+.cfg-toggle.pending{background:var(--gold2);border-color:var(--gold);color:var(--gold)}
+.cfg-field-body{flex:1;min-width:0}
+.cfg-field-name{font-size:13px;font-weight:700;color:var(--text);margin-bottom:2px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cfg-field-meta{font-size:11px;color:var(--muted);line-height:1.5}
+.cfg-field-type-pill{
+  display:inline-block;margin-top:5px;font-size:10.5px;font-weight:600;
+  padding:2px 8px;border-radius:20px;background:var(--surface);
+  border:1px solid var(--border);color:var(--muted);
+}
+.cfg-field-actions{display:flex;gap:4px;align-items:center;flex-shrink:0}
+.cfg-field-btn{
+  width:26px;height:26px;border-radius:7px;border:1px solid var(--border);
+  background:none;cursor:pointer;font-size:12px;display:flex;align-items:center;justify-content:center;
+}
+.cfg-field-btn:hover{background:var(--surface)}
+.cfg-field-btn.approve{border-color:#16A34A;color:#16A34A}
+.cfg-field-btn.approve:hover{background:#DCFCE7}
+.cfg-field-btn.danger{border-color:var(--red);color:var(--red)}
+.cfg-field-btn.danger:hover{background:#FEE2E2}
+.cfg-add-field{
+  text-align:center;padding:8px;font-size:12px;font-weight:700;
+  color:var(--muted);cursor:pointer;border-radius:8px;border:1.5px dashed var(--border);
+  margin-top:4px;
+}
+.cfg-add-field:hover{border-color:var(--teal);color:var(--teal);background:var(--teal2)}
+.cfg-col-new{
+  min-width:160px;border:1.5px dashed var(--border);border-radius:10px;
+  padding:20px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:8px;cursor:pointer;
+}
+.cfg-col-new:hover{border-color:var(--teal);background:var(--teal2)}
+.cfg-col-new-icon{font-size:24px;color:var(--muted)}
+.cfg-col-new-label{font-size:13px;font-weight:700;color:var(--muted)}
+
+/* ── MODAL KONFIGURASI ──────────────────────────────────── */
+#cfg-field-modal-overlay,
+#cfg-reject-modal-overlay,
+#cfg-bidang-modal-overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);
+  z-index:400;align-items:center;justify-content:center;padding:20px;
+}
+#cfg-field-modal-overlay.show,
+#cfg-reject-modal-overlay.show,
+#cfg-bidang-modal-overlay.show{display:flex}
+.cfg-modal-box{
+  background:var(--card);border-radius:14px;width:100%;max-width:480px;
+  max-height:90vh;overflow-y:auto;
+}
+.cfg-modal-head{
+  padding:16px 20px 14px;border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+}
+.cfg-modal-title{font-family:'DM Serif Display',serif;font-size:17px;color:var(--navy)}
+body.dark .cfg-modal-title{color:var(--text)}
+.cfg-modal-body{padding:18px 20px}
+.cfg-modal-foot{padding:14px 20px 18px;border-top:1px solid var(--border);display:flex;gap:10px;justify-content:flex-end}
+.cfg-f-row{margin-bottom:14px}
+.cfg-f-label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:5px}
+.cfg-tipe-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+.cfg-tipe-opt{
+  border:1.5px solid var(--border);border-radius:8px;padding:8px 6px;
+  text-align:center;cursor:pointer;font-size:11.5px;color:var(--muted);
+}
+.cfg-tipe-opt:hover{border-color:var(--teal)}
+.cfg-tipe-opt.selected{border-color:var(--teal);background:var(--teal2);color:var(--teal);font-weight:700}
+.cfg-modal-input{
+  width:100%;border:1.5px solid var(--border);border-radius:8px;
+  padding:9px 12px;font-size:13px;font-family:'Inter',sans-serif;
+  color:var(--text);background:var(--card);outline:none;
+}
+.cfg-modal-input:focus{border-color:var(--teal)}
+.cfg-approval-switch-row{
+  display:flex;align-items:center;justify-content:space-between;
+  background:var(--surface);border-radius:8px;padding:10px 12px;
+}
+.cfg-modal-close{
+  width:28px;height:28px;border-radius:8px;border:1px solid var(--border);
+  background:none;cursor:pointer;font-size:14px;
+  display:flex;align-items:center;justify-content:center;
+}
+.cfg-modal-close:hover{background:var(--surface)}
+.modal-btn{
+  padding:9px 18px;border-radius:8px;border:none;font-weight:700;
+  font-size:13px;cursor:pointer;font-family:'Inter',sans-serif;
+}
+.modal-btn.primary{background:var(--teal);color:#fff}
+.modal-btn.primary:hover{background:#0B7A70}
+.modal-btn.danger{background:var(--red);color:#fff}
+.modal-btn.secondary{background:var(--surface);color:var(--muted);border:1px solid var(--border)}
+
+/* ── MODAL KARYAWAN (fix: CSS ada tapi HTML hilang) ─────── */
+#karyawan-modal-overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);
+  z-index:400;align-items:center;justify-content:center;padding:20px;
+}
+#karyawan-modal-overlay.show{display:flex}
 </style>
 </head>
 <body>
@@ -1224,31 +1351,28 @@ body.dark .dark-text{color:var(--text)}
   <div class="content">
 
 <div id="page-ringkasan" class="page active">
+
   <div class="page-header-row">
     <div>
-      <div class="page-title-main">Dashboard Laporan GM 📊</div>
-      <div class="page-title-sub" id="ringkasan-tanggal-label"></div>
+      <div class="page-title-main">📊 Dashboard GM</div>
+      <div class="page-title-sub" id="ringkasan-tanggal-label" style="color:var(--muted);font-size:13px;margin-top:3px"></div>
     </div>
-    <button class="fab-btn no-print" onclick="nav(document.getElementById('sb-item-laporanbulanan'),'page-laporanbulanan')">
-      📅 Buka Laporan Bulanan
+    <button class="fab-btn no-print" onclick="nav(document.getElementById('sb-item-review'),'page-review')">
+      🔍 Review Laporan Bulan Ini
     </button>
   </div>
 
-  <div class="alert info" id="ringkasan-alert" style="margin-bottom:18px">
-    <span class="alert-icon">ℹ️</span>
-    <span>Input harian dilakukan Isma dan Yuyun di dashboard masing-masing. Di sini kamu bisa review, finalisasi, dan ekspor laporan.</span>
-  </div>
-
-  <div class="stat-grid" style="margin-bottom:24px">
+  <!-- Stat cards bulan berjalan -->
+  <div class="stat-grid" style="margin-bottom:20px">
     <div class="stat-card">
       <div class="stat-label">Dana Masuk Bulan Ini</div>
-      <div class="stat-val teal" id="rs-dana-masuk">—</div>
-      <div class="stat-sub">Dari rollup harian</div>
+      <div class="stat-val teal" id="rs-dana-masuk" style="font-size:17px">—</div>
+      <div class="stat-sub">Dari rollup input harian Isma</div>
     </div>
     <div class="stat-card">
       <div class="stat-label">Closing Marketing</div>
       <div class="stat-val blue" id="rs-closing">—</div>
-      <div class="stat-sub">Bulan berjalan</div>
+      <div class="stat-sub">Mahasiswa baru bulan berjalan</div>
     </div>
     <div class="stat-card">
       <div class="stat-label">Berkas Selesai</div>
@@ -1262,27 +1386,57 @@ body.dark .dark-text{color:var(--text)}
     </div>
   </div>
 
-  <div class="sec-head" style="margin-bottom:12px"><div class="sec-title">⚡ Menu Utama GM</div></div>
-  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:12px">
-    <div class="quick-card" onclick="nav(document.getElementById('sb-item-review'),'page-review')">
-      <div class="quick-card-icon">🔍</div><div class="quick-card-label">Review &amp; Finalisasi</div>
+  <!-- Progress pengisian bulan ini -->
+  <div style="background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 18px;margin-bottom:20px">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:12px">
+      <div style="font-weight:700;font-size:13px">📅 Progress Pengisian Bulan Ini</div>
+      <span id="rs-periode-label" style="font-size:12px;color:var(--muted)"></span>
     </div>
-    <div class="quick-card" onclick="nav(document.getElementById('sb-item-laporanbulanan'),'page-laporanbulanan')">
-      <div class="quick-card-icon">📅</div><div class="quick-card-label">Laporan Bulanan</div>
-    </div>
-    <div class="quick-card" onclick="nav(document.getElementById('sb-item-laporantahunan'),'page-tahunan')">
-      <div class="quick-card-icon">📆</div><div class="quick-card-label">Laporan Tahunan</div>
-    </div>
-    <div class="quick-card" onclick="nav(document.getElementById('sb-item-laporandirektur'),'page-laporandirektur')">
-      <div class="quick-card-icon">📊</div><div class="quick-card-label">Laporan ke Direktur</div>
-    </div>
-    <div class="quick-card" onclick="nav(document.getElementById('sb-item-karyawan'),'page-karyawan')">
-      <div class="quick-card-icon">👥</div><div class="quick-card-label">Kelola Karyawan</div>
-    </div>
-    <div class="quick-card" onclick="nav(document.getElementById('sb-item-pengaturan'),'page-pengaturan')">
-      <div class="quick-card-icon">⚙️</div><div class="quick-card-label">Pengaturan</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px" id="rs-progress-grid">
+      <div style="text-align:center;padding:12px;background:var(--surface);border-radius:10px">
+        <div style="font-size:22px;font-weight:700;color:var(--muted)" id="rs-p-keu">—</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px">💰 Keuangan</div>
+      </div>
+      <div style="text-align:center;padding:12px;background:var(--surface);border-radius:10px">
+        <div style="font-size:22px;font-weight:700;color:var(--muted)" id="rs-p-adm">—</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px">📂 Administrasi</div>
+      </div>
+      <div style="text-align:center;padding:12px;background:var(--surface);border-radius:10px">
+        <div style="font-size:22px;font-weight:700;color:var(--muted)" id="rs-p-mkt">—</div>
+        <div style="font-size:11px;color:var(--muted);margin-top:3px">📊 Marketing</div>
+      </div>
     </div>
   </div>
+
+  <!-- Menu utama -->
+  <div class="sec-head" style="margin-bottom:12px"><div class="sec-title">Menu</div></div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px">
+    <div class="quick-card" onclick="nav(document.getElementById('sb-item-review'),'page-review')">
+      <div class="quick-card-icon">🔍</div>
+      <div class="quick-card-label">Review &amp; Finalisasi</div>
+    </div>
+    <div class="quick-card" onclick="nav(document.getElementById('sb-item-laporanbulanan'),'page-laporanbulanan')">
+      <div class="quick-card-icon">📅</div>
+      <div class="quick-card-label">Laporan Bulanan</div>
+    </div>
+    <div class="quick-card" onclick="nav(document.getElementById('sb-item-laporantahunan'),'page-tahunan')">
+      <div class="quick-card-icon">📆</div>
+      <div class="quick-card-label">Laporan Tahunan</div>
+    </div>
+    <div class="quick-card" onclick="nav(document.getElementById('sb-item-laporandirektur'),'page-laporandirektur')">
+      <div class="quick-card-icon">📊</div>
+      <div class="quick-card-label">Laporan ke Direktur</div>
+    </div>
+    <div class="quick-card" onclick="nav(document.getElementById('sb-item-karyawan'),'page-karyawan')">
+      <div class="quick-card-icon">👥</div>
+      <div class="quick-card-label">Kelola Karyawan</div>
+    </div>
+    <div class="quick-card" onclick="nav(document.getElementById('sb-item-pengaturan'),'page-pengaturan')">
+      <div class="quick-card-icon">⚙️</div>
+      <div class="quick-card-label">Pengaturan</div>
+    </div>
+  </div>
+
 </div><!-- /page-ringkasan -->
 
 <div id="page-karyawan" class="page">
@@ -2047,6 +2201,139 @@ body.dark .dark-text{color:var(--text)}
   <div class="toast-title" id="toast-title"></div>
   <div id="toast-body"></div>
 </div>
+
+<!-- ══ MODAL: KARYAWAN ══════════════════════════════════════════ -->
+<div id="karyawan-modal-overlay">
+  <div class="cfg-modal-box">
+    <div class="cfg-modal-head">
+      <div class="cfg-modal-title" id="karyawan-modal-title">Tambah Karyawan</div>
+      <button class="cfg-modal-close" onclick="closeKaryawanModal()">✕</button>
+    </div>
+    <div class="cfg-modal-body">
+      <div class="cfg-f-row">
+        <div class="cfg-f-label">Nama Karyawan *</div>
+        <input id="k-nama" class="cfg-modal-input" placeholder="cth: Budi Santoso"/>
+      </div>
+      <div class="cfg-f-row">
+        <div class="cfg-f-label">Jabatan / Divisi</div>
+        <input id="k-jabatan" class="cfg-modal-input" placeholder="cth: Marketing - RPL STISDU"/>
+      </div>
+    </div>
+    <div class="cfg-modal-foot">
+      <button class="modal-btn secondary" onclick="closeKaryawanModal()">Batal</button>
+      <button class="modal-btn primary" onclick="saveKaryawan()">💾 Simpan</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL: FIELD KONFIGURASI ═════════════════════════════════ -->
+<div id="cfg-field-modal-overlay">
+  <div class="cfg-modal-box">
+    <div class="cfg-modal-head">
+      <div class="cfg-modal-title" id="cfg-field-modal-title">Tambah Field Baru</div>
+      <button class="cfg-modal-close" onclick="closeCfgFieldModal()">✕</button>
+    </div>
+    <div class="cfg-modal-body">
+
+      <div class="cfg-f-row">
+        <div class="cfg-f-label">Nama Field *</div>
+        <input id="cfg-f-nama" class="cfg-modal-input" placeholder="cth: Data Terevisi STITBU"/>
+      </div>
+
+      <div class="cfg-f-row">
+        <div class="cfg-f-label">Bidang / Kategori *</div>
+        <select id="cfg-f-bidang" class="cfg-modal-input">
+          <option value="Keuangan">Keuangan</option>
+          <option value="Administrasi">Administrasi</option>
+          <option value="Marketing">Marketing</option>
+        </select>
+      </div>
+
+      <div class="cfg-f-row">
+        <div class="cfg-f-label">Tipe Input</div>
+        <div class="cfg-tipe-grid">
+          <div class="cfg-tipe-opt selected" data-tipe="angka" onclick="selectCfgTipe('angka')">🔢 Angka</div>
+          <div class="cfg-tipe-opt" data-tipe="rupiah" onclick="selectCfgTipe('rupiah')">💰 Rupiah</div>
+          <div class="cfg-tipe-opt" data-tipe="rupiah_list" onclick="selectCfgTipe('rupiah_list')">💰 Rupiah List</div>
+          <div class="cfg-tipe-opt" data-tipe="teks" onclick="selectCfgTipe('teks')">📝 Teks</div>
+          <div class="cfg-tipe-opt" data-tipe="ya_tidak" onclick="selectCfgTipe('ya_tidak')">✅ Ya/Tidak</div>
+          <div class="cfg-tipe-opt" data-tipe="persentase" onclick="selectCfgTipe('persentase')">📊 Persentase</div>
+          <div class="cfg-tipe-opt" data-tipe="closing_list" onclick="selectCfgTipe('closing_list')">🎯 Closing List</div>
+          <div class="cfg-tipe-opt" data-tipe="lead_per_pic" onclick="selectCfgTipe('lead_per_pic')">👥 Lead per PIC</div>
+        </div>
+      </div>
+
+      <div class="cfg-f-row" id="cfg-f-satuan-wrap">
+        <div class="cfg-f-label">Satuan (opsional)</div>
+        <input id="cfg-f-satuan" class="cfg-modal-input" placeholder="cth: berkas, dokumen, data"/>
+      </div>
+
+      <div class="cfg-f-row" id="cfg-f-approval-wrap">
+        <div class="cfg-approval-switch-row">
+          <div>
+            <div style="font-weight:700;font-size:13px">Perlu Persetujuan GM</div>
+            <div style="font-size:11.5px;color:var(--muted)">Aktif hanya setelah GM setujui</div>
+          </div>
+          <label style="position:relative;display:inline-block;width:40px;height:22px;cursor:pointer">
+            <input type="checkbox" id="cfg-f-approval-switch" style="opacity:0;width:0;height:0"/>
+            <span style="position:absolute;inset:0;background:var(--border);border-radius:11px;transition:.3s"></span>
+          </label>
+        </div>
+      </div>
+
+    </div>
+    <div class="cfg-modal-foot">
+      <button class="modal-btn secondary" onclick="closeCfgFieldModal()">Batal</button>
+      <button class="modal-btn primary" id="cfg-field-modal-submit" onclick="saveCfgField()">Simpan</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL: TOLAK FIELD ════════════════════════════════════════ -->
+<div id="cfg-reject-modal-overlay">
+  <div class="cfg-modal-box" style="max-width:380px">
+    <div class="cfg-modal-head">
+      <div class="cfg-modal-title">Tolak Pengajuan Field</div>
+      <button class="cfg-modal-close" onclick="document.getElementById('cfg-reject-modal-overlay').classList.remove('show')">✕</button>
+    </div>
+    <div class="cfg-modal-body">
+      <div class="cfg-f-row">
+        <div class="cfg-f-label">Alasan penolakan (opsional)</div>
+        <textarea id="cfg-reject-alasan" class="cfg-modal-input" rows="3"
+          placeholder="cth: Field ini sudah tercakup di field lain..."></textarea>
+      </div>
+    </div>
+    <div class="cfg-modal-foot">
+      <button class="modal-btn secondary" onclick="document.getElementById('cfg-reject-modal-overlay').classList.remove('show')">Batal</button>
+      <button class="modal-btn danger" onclick="submitCfgReject()">✕ Tolak Field</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ MODAL: BIDANG BARU ════════════════════════════════════════ -->
+<div id="cfg-bidang-modal-overlay">
+  <div class="cfg-modal-box" style="max-width:380px">
+    <div class="cfg-modal-head">
+      <div class="cfg-modal-title">Tambah Bidang Baru</div>
+      <button class="cfg-modal-close" onclick="document.getElementById('cfg-bidang-modal-overlay').classList.remove('show')">✕</button>
+    </div>
+    <div class="cfg-modal-body">
+      <div class="cfg-f-row">
+        <div class="cfg-f-label">Nama Bidang *</div>
+        <input id="cfg-b-nama" class="cfg-modal-input" placeholder="cth: Data Tambahan"/>
+      </div>
+      <div class="cfg-f-row">
+        <div class="cfg-f-label">Ikon (emoji, opsional)</div>
+        <input id="cfg-b-ikon" class="cfg-modal-input" placeholder="cth: 📋" maxlength="4"/>
+      </div>
+    </div>
+    <div class="cfg-modal-foot">
+      <button class="modal-btn secondary" onclick="document.getElementById('cfg-bidang-modal-overlay').classList.remove('show')">Batal</button>
+      <button class="modal-btn primary" onclick="saveCfgBidang()">＋ Tambah Bidang</button>
+    </div>
+  </div>
+</div>
+
 
 <script>
 
@@ -4498,30 +4785,58 @@ function buildRollupDariHarian(list) {
 async function loadRingkasanHome() {
   const now     = new Date();
   const periode = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0');
+  const bln     = ['','Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
 
   const el = document.getElementById('ringkasan-tanggal-label');
-  if (el) {
-    const bln = ['','Jan','Feb','Mar','Apr','Mei','Jun','Jul','Agu','Sep','Okt','Nov','Des'];
-    el.textContent = bln[now.getMonth()+1] + ' ' + now.getFullYear();
-  }
+  if (el) el.textContent = bln[now.getMonth()+1] + ' ' + now.getFullYear();
 
-  // Stat karyawan aktif (dari data yang sudah diload)
+  const perEl = document.getElementById('rs-periode-label');
+  if (perEl) perEl.textContent = bln[now.getMonth()+1] + ' ' + now.getFullYear();
+
+  // Karyawan aktif
   const rsKry = document.getElementById('rs-karyawan');
   if (rsKry && typeof KARYAWAN !== 'undefined') {
-    rsKry.textContent = KARYAWAN.filter(k => k.aktif !== false).length;
+    const aktif = KARYAWAN.filter(k => k.aktif !== false).length;
+    rsKry.textContent = aktif || '—';
   }
 
   const rollup = await loadRollupBulanan(periode);
   if (!rollup) return;
 
-  const rp = n => 'Rp ' + (Number(n)||0).toLocaleString('id-ID');
-  const rsDana  = document.getElementById('rs-dana-masuk');
-  const rsClose = document.getElementById('rs-closing');
-  const rsBerkas= document.getElementById('rs-berkas');
+  const rp       = n => formatRupiahSingkat(n);
+  const setEl    = (id, val) => { const el = document.getElementById(id); if (el) el.textContent = val; };
+  const setColor = (id, color) => { const el = document.getElementById(id); if (el) el.style.color = color; };
 
-  if (rsDana)   rsDana.textContent   = rp(rollup.keuangan?.totalDanaMasuk   || 0);
-  if (rsClose)  rsClose.textContent  = (rollup.marketing?.totalClosing       || 0) + ' mhs';
-  if (rsBerkas) rsBerkas.textContent = (rollup.administrasi?.totalBerkasSelesai || 0) + ' berkas';
+  const danaMasuk = rollup.keuangan?.totalDanaMasuk || 0;
+  const closing   = rollup.marketing?.totalClosing || 0;
+  const berkas    = rollup.administrasi?.totalBerkasSelesai || 0;
+  const prog      = rollup.progress || {};
+  const totalHari = prog.totalHariKerja || 22;
+
+  setEl('rs-dana-masuk', rp(danaMasuk));
+  setEl('rs-closing',    closing + ' mhs');
+  setEl('rs-berkas',     berkas + ' berkas');
+
+  // Progress per divisi
+  const fmtProg = (hariTerisi) => {
+    const pct = Math.round((hariTerisi / totalHari) * 100);
+    return hariTerisi + '/' + totalHari + ' hari';
+  };
+  const colorProg = (hariTerisi) => {
+    const pct = (hariTerisi / totalHari) * 100;
+    return pct >= 80 ? '#16A34A' : pct >= 40 ? 'var(--gold)' : 'var(--red)';
+  };
+
+  const keuHari = prog.Keuangan?.hariTerisi || 0;
+  const admHari = prog.Administrasi?.hariTerisi || 0;
+  const mktHari = prog.Marketing?.hariTerisi || 0;
+
+  setEl('rs-p-keu', fmtProg(keuHari));
+  setEl('rs-p-adm', fmtProg(admHari));
+  setEl('rs-p-mkt', fmtProg(mktHari));
+  setColor('rs-p-keu', colorProg(keuHari));
+  setColor('rs-p-adm', colorProg(admHari));
+  setColor('rs-p-mkt', colorProg(mktHari));
 }
 
 
